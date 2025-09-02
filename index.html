@@ -9,38 +9,32 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     :root{
-      /* Colores inspirados en el logotipo */
-      --brand:#0b66ff; /* azul edyen */
-      --green:#36e000; /* acento verde */
-      --red:#ff1a00;   /* acento rojo */
-      --gold:#f7b24a;  /* acento amarillo */
-      --ink:#0b1220;   /* texto */
-      --muted:#5b6b8c; /* texto secundario */
-      --bg:#f7f9ff;    /* fondo suave */
-      --card:#ffffff;  /* tarjetas */
-      --line:#e6edff;  /* bordes sutiles */
+      --brand:#0b66ff;
+      --green:#36e000;
+      --red:#ff1a00;
+      --gold:#f7b24a;
+      --ink:#0b1220;
+      --muted:#5b6b8c;
+      --bg:#f7f9ff;
+      --card:#ffffff;
+      --line:#e6edff;
       --radius:18px;
-      --shadow: 0 10px 28px rgba(16,24,40,.06), 0 2px 8px rgba(16,24,40,.05);
+      --shadow:0 10px 28px rgba(16,24,40,.06), 0 2px 8px rgba(16,24,40,.05);
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
     body{
       margin:0;
       font-family:"Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
-      font-weight:300; /* tipografía light */
+      font-weight:300;
       background:linear-gradient(180deg,var(--bg),#fff);
       color:var(--ink);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
     }
     .wrap{
       max-width:980px;
-      margin-inline:auto;
+      margin:auto;
       padding:48px 24px 64px;
     }
     header{
-      display:grid;
-      gap:6px;
       margin-bottom:28px;
     }
     .eyebrow{
@@ -53,7 +47,7 @@
       margin:0;
       font-weight:600;
       letter-spacing:-.02em;
-      font-size: clamp(28px, 4vw, 40px);
+      font-size:clamp(28px,4vw,40px);
     }
     .meta{
       color:var(--muted);
@@ -68,31 +62,39 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:18px;
-      padding:18px 18px 18px 20px;
+      padding:18px 20px;
       background:var(--card);
       border:1px solid var(--line);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
+      gap:20px;
     }
-    .card:hover{ transform:translateY(-1px); box-shadow:0 14px 34px rgba(16,24,40,.08), 0 3px 10px rgba(16,24,40,.06);}
-    .card .who{
-      display:flex; flex-direction:column; gap:4px; min-width:0;
+    .card::before{
+      content:"";
+      width:6px; height:100%;
+      border-radius:10px 0 0 10px;
+      background:var(--brand);
+    }
+    .card.green::before{ background:var(--green); }
+    .card.red::before{ background:var(--red); }
+    .card.gold::before{ background:var(--gold); }
+
+    .who{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
     }
     .name{
-      font-weight:400;
+      font-weight:500;
       font-size:1.05rem;
     }
     .topic{
       color:var(--muted);
-      font-size:.98rem;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
+      font-size:.95rem;
     }
     .cta{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:10px 16px;
+      padding:10px 18px;
       border-radius:12px;
       border:1px solid transparent;
       background:var(--brand);
@@ -105,22 +107,6 @@
     .cta:hover{ filter:brightness(1.05) saturate(1.05); }
     .cta:active{ transform:translateY(1px); }
 
-    /* Acentos sutiles por ítem (barra izquierda) */
-    .card::before{
-      content:"";
-      width:6px; height:100%;
-      border-radius:10px 0 0 10px;
-      margin-right:8px;
-      background:var(--brand);
-      display:block;
-    }
-    .card.green::before{ background:var(--green); }
-    .card.red::before{ background:var(--red); }
-    .card.gold::before{ background:var(--gold); }
-
-    /* Accesibilidad para foco teclado */
-    .card:focus-within{ outline:2px solid rgba(11,102,255,.35); outline-offset:3px; }
-
     footer{
       margin-top:36px;
       color:var(--muted);
@@ -128,10 +114,10 @@
       text-align:center;
     }
 
-    /* Layout pequeño */
-    @media (max-width:640px){
-      .card{ flex-direction:column; align-items:flex-start; }
-      .cta{ width:100%; }
+    @media(max-width:640px){
+      .card{flex-direction:column;align-items:flex-start}
+      .cta{width:100%;text-align:center}
+      .card::before{width:100%;height:4px;border-radius:10px 10px 0 0;}
     }
   </style>
 </head>
@@ -143,13 +129,13 @@
       <p class="meta">Los siguientes miembros del Consejo han compartido material para presentar en la sesión del <strong>02 de septiembre de 2025</strong>.</p>
     </header>
 
-    <section class="list" aria-label="Material de la sesión">
+    <section class="list">
       <div class="card">
         <div class="who">
           <div class="name">Eric Barrera</div>
           <div class="topic">AVANCE ISO 9001</div>
         </div>
-        <a class="cta" href="https://edyen-chief-staff.github.io/Consejo/" target="_blank" rel="noopener">Abrir</a>
+        <a class="cta" href="https://edyen-chief-staff.github.io/Consejo/" target="_blank">Abrir</a>
       </div>
 
       <div class="card green">
@@ -157,7 +143,7 @@
           <div class="name">Lucero José</div>
           <div class="topic">REPORTE SEMANAL DE VACANTES</div>
         </div>
-        <a class="cta" href="https://gamma.app/docs/REPORTE-SEMANAL-DE-VACANTES-s943r8ssyhkzm36?mode=doc" target="_blank" rel="noopener">Abrir</a>
+        <a class="cta" href="https://gamma.app/docs/REPORTE-SEMANAL-DE-VACANTES-s943r8ssyhkzm36?mode=doc" target="_blank">Abrir</a>
       </div>
 
       <div class="card red">
@@ -165,7 +151,7 @@
           <div class="name">Federico Curiel</div>
           <div class="topic">CONTRATO INVERSIONISTAS</div>
         </div>
-        <a class="cta" href="https://docs.google.com/presentation/d/1T1-ENrzq1pna9dIVW32rYBO8CaFKJlbi/edit?usp=drive_link&ouid=113873578964714878242&rtpof=true&sd=true" target="_blank" rel="noopener">Abrir</a>
+        <a class="cta" href="https://docs.google.com/presentation/d/1T1-ENrzq1pna9dIVW32rYBO8CaFKJlbi/edit?usp=drive_link" target="_blank">Abrir</a>
       </div>
 
       <div class="card gold">
@@ -173,7 +159,7 @@
           <div class="name">Alejandra Luján</div>
           <div class="topic">INICIO DE OPERACIONES</div>
         </div>
-        <a class="cta" href="https://docs.google.com/presentation/d/1_YKkHDaxUhscwQrAzMUcHPusoHOGS6or/edit?usp=drive_link&ouid=113873578964714878242&rtpof=true&sd=true" target="_blank" rel="noopener">Abrir</a>
+        <a class="cta" href="https://docs.google.com/presentation/d/1_YKkHDaxUhscwQrAzMUcHPusoHOGS6or/edit?usp=drive_link" target="_blank">Abrir</a>
       </div>
 
       <div class="card red">
@@ -181,7 +167,7 @@
           <div class="name">Víctor Romo</div>
           <div class="topic">REGISTROS DE INCIDENTES OPERATIVOS</div>
         </div>
-        <a class="cta" href="https://docs.google.com/presentation/d/1MWi5fyC8-EDP3tEYVREMRhk_AKa0Sk-S/edit?usp=drive_link&ouid=113873578964714878242&rtpof=true&sd=true" target="_blank" rel="noopener">Abrir</a>
+        <a class="cta" href="https://docs.google.com/presentation/d/1MWi5fyC8-EDP3tEYVREMRhk_AKa0Sk-S/edit?usp=drive_link" target="_blank">Abrir</a>
       </div>
     </section>
 
